@@ -1,0 +1,52 @@
+{
+  "name": "use-database-transactions",
+  "version": "1.0.0",
+  "description": "Example of rolling back your test database after each test.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:migrate": "node ./jest/jest.migrate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mw999/use-database-transactions.git"
+  },
+  "keywords": [],
+  "author": "Matthew Williams <matthew.williams@ubisend.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mw999/use-database-transactions/issues"
+  },
+  "homepage": "https://github.com/mw999/use-database-transactions#readme",
+  "dependencies": {
+    "knex": "^0.19.4",
+    "mysql2": "^1.7.0",
+    "objection": "^1.6.11"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "eslint": "^6.4.0",
+    "husky": "^3.0.7",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test -- --silent --bail"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "pretty-quick --staged",
+      "git add"
+    ],
+    "*.js": [
+      "eslint",
+      "git add"
+    ]
+  }
+}
